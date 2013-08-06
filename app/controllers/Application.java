@@ -10,6 +10,8 @@ import java.util.*;
 
 import views.html.*;
 
+import sample.HelloAkka;
+
 public class Application extends Controller {
 
     /**
@@ -41,6 +43,7 @@ public class Application extends Controller {
             return badRequest(index.render(form));
         } else {
             Hello data = form.get();
+            HelloAkka.hello.tell(data.name);
             return ok(
                 hello.render(data.name, data.repeat, data.color)
             );
